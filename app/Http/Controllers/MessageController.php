@@ -15,9 +15,6 @@ class MessageController extends Controller
         return view('messages', get_defined_vars());
     }
 
-
-
-
     // components
     function userListComponent()
     {
@@ -39,6 +36,7 @@ class MessageController extends Controller
                     ->where('sender_id', Auth::user()->id);
             })
             ->get();
+            
         $user = User::find($userId);
         $view = view('messageComponents.userMessages', get_defined_vars())->render();
         return response()->json(['data' => $view], 200);
@@ -54,5 +52,7 @@ class MessageController extends Controller
         return response()->json(['message'=>'succeed'], 200);
 
         // dd($request->all());
+        // dd($request->receiver_id);
+
     }
 }
